@@ -51,13 +51,15 @@
                     {{ page.name }}
                 </button>
             </li>
-            <li v-if="numberActivePage+maxVisibleButtons - 1 < countAllPage" class="pagination_item">
+            <li v-if="numberActivePage + maxVisibleButtons - 1 < countAllPage" class="pagination_item">
                 <button type="button" >
                     ...
                 </button>
             </li>
             <li class="pagination_item">
-                <button v-if="numberActivePage + maxVisibleButtons - 2  <= countAllPage" @click="inEndActivePage" type="button" class="rounded-full w-12 h-12 hover:bg-blue-50 hover:text-white-100" >
+                <button v-if="countAllPage - numberActivePage > maxVisibleButtons - 2" @click="inEndActivePage" type="button" 
+                        class="rounded-full w-12 h-12 hover:bg-blue-50 hover:text-white-100" 
+                >
                     {{ countAllPage }}
                 </button>
             </li>
@@ -119,10 +121,12 @@
                 if (this.numberActivePage === this.countAllPage) {
                     return this.countAllPage - this.maxVisibleButtons + 1;
                 }
+
                 // if(this.numberActivePage == this.countAllPage - 1){
                 //     return this.numberActivePage - this.maxVisibleButtons + 2;
                 // }
-                if(this.numberActivePage >=  this.countAllPage - this.maxVisibleButtons + 3){                       //вопросы насчет расчетов д
+
+                if(this.numberActivePage >=  this.countAllPage - this.maxVisibleButtons + 3){                                        //вопросы насчет расчетов д
                     return this.numberActivePage - this.maxVisibleButtons + 1 + this.countAllPage - this.maxVisibleButtons + 4 - this.numberActivePage;
                 }
                 

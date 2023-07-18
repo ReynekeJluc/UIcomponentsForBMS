@@ -1,12 +1,4 @@
 <template>
-
-    <!-- <div class="mx-auto">
-        <label for="checkbox1" class="block z-10 w-24 h-24">
-            <input id="checkbox1" type="checkbox" class="z-0 w-24 h-24 flex m-auto rounded-2xl">
-            <span></span>
-        </label>
-    </div> -->
-
     <div class="mx-auto">
         <input type="checkbox" class="custom-checkbox" id="hell" name   ="hell" value="yes" :disabled="isDisabled">
         <label for="hell" class="border-none"></label>
@@ -18,7 +10,7 @@
 <script>
 
 export default {
-    name: "MyCheckBox",
+    name: "MyCheckBoxMinus",
     methods: {
         isDisabled() {
             return 1;
@@ -52,7 +44,7 @@ export default {
         border-radius: 0.25em;
         margin-right: 0.5em;
         background:#6C8BC9;
-        background-image:url("../../assets/icons/checkboxSVG.svg");
+        background-image:url("../../assets/icons/CheckboxMinus.svg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 50% 50%;
@@ -60,15 +52,15 @@ export default {
     .custom-checkbox:checked + label::before{
         border-color: none;
         background-color: #3C5099;
-        background-image:url("../../assets/icons/checkboxSVG.svg");   
+        background-image:url("../../assets/icons/CheckboxMinus.svg");   
     }
     .custom-checkbox:hover + label::before{
         background-color: #3256B0;
-        background-image:url("../../assets/icons/checkboxSVG.svg");
+        background-image:url("../../assets/icons/CheckboxMinus.svg");
     }
     .custom-checkbox:disabled + label::before{
         background-color: #C3C6CE;
-        background-image:url("../../assets/icons/checkboxSVG.svg");
+        background-image:url("../../assets/icons/CheckboxMinus.svg");
     }
 
 
