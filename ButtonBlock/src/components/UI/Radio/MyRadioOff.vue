@@ -1,12 +1,12 @@
 <template>
 
     <div class="mx-auto">
-        <input type="radio" class="custom-radio" id="hola2" name="hola2" :disabled="!isDisabled" >
-        <label for="hola2"></label>
-        <input type="radio" class="custom-radio" id="hola3" name="hola3" :disabled="!isDisabled" >
-        <label for="hola3"></label>
-        <input type="radio" class="custom-radio" id="hola4" name="hola4" :disabled="!isDisabled" >
-        <label for="hola4"></label>
+        <input type="radio" class="custom-radio" id="radio1" name="radio" :disabled="!isDisabled" >
+        <label for="radio1"></label>
+        <input type="radio" class="custom-radio" id="radio2" name="radio" :disabled="!isDisabled" >
+        <label for="radio2"></label>
+        <input type="radio" class="custom-radio" id="radio3" name="radio" :disabled="!isDisabled" >
+        <label for="radio3"></label>
     </div>
 
 </template>
@@ -32,7 +32,6 @@ export default {
         border: none;
         opacity: 0;
         z-index: -1;
-        
     }
     .custom-radio + label{
         display: inline-flex;
@@ -44,9 +43,10 @@ export default {
         cursor: pointer;
         width: 1em;
         height: 1em;
-        border: 1px solid #6C8BC9;
+        border: 2px solid #6C8BC9;
         border-radius: 100%;
         background-color:#ffffff;
+        margin: 2px;
     }
     .custom-radio:checked + label::before{
         border-color: #3C5099;   

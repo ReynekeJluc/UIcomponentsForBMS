@@ -9,18 +9,19 @@
 
 <script>
 
-export default {
-    name: "MyRadioOff",
-    methods: {
-        isDisabled() {
-            return 1;
+    export default {
+        name: "MyRadioOff",
+        methods: {
+            isDisabled() {
+                return 1;
+            }
         }
     }
-}
 
 </script>
 
 <style> 
+
     .custom-radio {
         border: none;
         position: absolute;
@@ -64,6 +65,5 @@ export default {
         background-color: #F5F7FA ;
 
     }
-
-
+    
 </style>

@@ -41,7 +41,7 @@
         cursor: pointer;
         width: 1em;
         height: 1em;
-        border: 1px solid #6C8BC9;
+        border: 2px solid #6C8BC9;
         border-radius: 4px;
         background-color: #ffffff;
     }
