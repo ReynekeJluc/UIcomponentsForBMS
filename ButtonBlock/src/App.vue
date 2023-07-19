@@ -2,7 +2,7 @@
 
   import MySwitch from './components/UI/MySwitch.vue';
   import MyPagination from './components/UI/MyPagination.vue';
-  import MyCheckbox from './components/UI/CheckBox/MyCheckBox.vue'
+  import MyCheckbox from './components/UI/MyCheckbox.vue'
   import MyRadio from './components/UI/Radio/MyRadio.vue'
 
 </script>

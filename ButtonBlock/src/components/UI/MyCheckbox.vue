@@ -45,6 +45,7 @@
 
 <style> 
 
+    /* Стили для всех */
     .custom-checkbox {
         position: absolute;
         border: none;
@@ -65,27 +66,29 @@
         background-color: #ffffff;
     }
 
+    /* Дефолт стили состояний */
     .custom-checkbox-def + label::before {
         content: "";
         border: 2px solid #6C8BC9;
     }
     .custom-checkbox-check + label::before {
         content: "";
-        background: #6C8BC9;
-        background-image: url("../../../assets/icons/checkboxSVG.svg");
+        background: #3C5099;
+        background-image: url("../../assets/icons/checkboxSVG.svg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 50% 50%;
     }
     .custom-checkbox-minus + label::before {
         content: "";
-        background: #6C8BC9;
-        background-image: url("../../../assets/icons/CheckboxMinus.svg");
+        background: #3C5099;
+        background-image: url("../../assets/icons/CheckboxMinus.svg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 50% 50%;
     }
 
+    /* Дефолтное состояние */
     .custom-checkbox-def:checked + label::before {
         border-color: #3C5099;
     }
@@ -99,6 +102,7 @@
         background-color: #F5F7FA;
     }
 
+    /* Состояния для плюса */
     .custom-checkbox-check:checked + label::before {
         background-color: #3C5099;
     }
@@ -110,6 +114,7 @@
         background-color: #C3C6CE;
     }
     
+    /* Состояния для минуса */
     .custom-checkbox-minus:checked + label::before {
         background-color: #3C5099;
     }
