@@ -1,7 +1,7 @@
 <template>
     <ul class="pagination flex mx-auto items-center text-3xl">
         <li class="pagination_item">
-            <button @click="inBeginActivePAge" v-if="!isInFirstPage" href="#" class="text-3xl w-12 h-12 bg-white-10">
+            <button @click="inBeginActivePage" v-if="!isInFirstPage" href="#" class="text-3xl w-12 h-12 bg-white-10">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 -2 25 25" fill="">
                     <path d="M9 8C9 7.44772 8.55229 7 8 7C7.44772 7 7 7.44771 7 8V16C7 16.5523 7.44772 17 8 17C8.55228 17 9 16.5523 9 16L9 8Z" fill="" class="fill-black-15"/>
                     <path d="M13.2929 7.70711C13.9229 7.07714 15 7.52331 15 8.41421V15.5858C15 16.4767 13.9229 16.9229 13.2929 16.2929L9.70711 12.7071C9.31658 12.3166 9.31658 11.6834 9.70711 11.2929L13.2929 7.70711Z" 
@@ -107,7 +107,7 @@
         data() {
             return {
                 numberActivePage: 1,
-                countAllPage: 22,
+                countAllPage: 10,
                 maxVisibleButtons: 4,
             }
 
@@ -162,7 +162,7 @@
             inEndActivePage(){
                 return this.numberActivePage = this.countAllPage;
             },
-            inBeginActivePAge(){
+            inBeginActivePage(){
                 return this.numberActivePage = 1;
             },
             incrementActivePage(){
