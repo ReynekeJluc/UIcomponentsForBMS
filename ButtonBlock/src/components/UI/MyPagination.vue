@@ -1,7 +1,7 @@
 <template>
     <ul class="pagination flex mx-auto items-center text-3xl">
         <li class="pagination_item">
-            <button @click="inBeginActivePage" v-if="!isInFirstPage" href="#" class="text-3xl w-12 h-12 bg-white-10">
+            <button @click="inBeginActivePAge" v-if="!isInFirstPage" href="#" class="text-3xl w-12 h-12 bg-white-10">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 -2 25 25" fill="">
                     <path d="M9 8C9 7.44772 8.55229 7 8 7C7.44772 7 7 7.44771 7 8V16C7 16.5523 7.44772 17 8 17C8.55228 17 9 16.5523 9 16L9 8Z" fill="" class="fill-black-15"/>
                     <path d="M13.2929 7.70711C13.9229 7.07714 15 7.52331 15 8.41421V15.5858C15 16.4767 13.9229 16.9229 13.2929 16.2929L9.70711 12.7071C9.31658 12.3166 9.31658 11.6834 9.70711 11.2929L13.2929 7.70711Z" 
@@ -32,11 +32,11 @@
                 </svg>
             </button>
         </li>
-        <li v-show="numberActivePage >= 3" class="pagination_item">
+        <li v-show="startPage >= 2" class="pagination_item">
                 <button type="button" >
                     ...
                 </button>
-            </li>
+        </li>
         <li class="pagination_items flex gap-3">
             <li v-for="page in pages" class="pagination-item">
                 <button 
@@ -51,13 +51,13 @@
                     {{ page.name }}
                 </button>
             </li>
-            <li v-if="numberActivePage + maxVisibleButtons - 1 < countAllPage" class="pagination_item">
+            <li v-if="endPage + 1 < countAllPage" class="pagination_item">
                 <button type="button" >
                     ...
                 </button>
             </li>
             <li class="pagination_item">
-                <button v-if="countAllPage - numberActivePage > maxVisibleButtons - 2" @click="inEndActivePage" type="button" 
+                <button v-if="endPage != countAllPage" @click="inEndActivePage" type="button" 
                         class="rounded-full w-12 h-12 hover:bg-blue-50 hover:text-white-100" 
                 >
                     {{ countAllPage }}
@@ -103,35 +103,27 @@
 <script>
 
     export default {
-        name: "MyPagination",
+        name: "MyPagination_2",
         data() {
             return {
                 numberActivePage: 1,
-                countAllPage: 10,
-                maxVisibleButtons: 4,
+                countAllPage: 100,
+                maxVisibleButtons: 10,
             }
 
         },
         computed: {
             startPage() {
-                if (this.numberActivePage === 1) {
+                if (this.numberActivePage <= Math.floor(this.maxVisibleButtons / 2) + 1) {
                     return 1;
                 }
 
-                if (this.numberActivePage === this.countAllPage) {
+
+                if ( this.countAllPage - this.numberActivePage < Math.floor(this.maxVisibleButtons / 2)) {
                     return this.countAllPage - this.maxVisibleButtons + 1;
                 }
 
-                // if(this.numberActivePage == this.countAllPage - 1){
-                //     return this.numberActivePage - this.maxVisibleButtons + 2;
-                // }
-
-                if(this.numberActivePage >=  this.countAllPage - this.maxVisibleButtons + 3){                                        //вопросы насчет расчетов д
-                    return this.numberActivePage - this.maxVisibleButtons + 1 + this.countAllPage - this.maxVisibleButtons + 4 - this.numberActivePage;
-                }
-                
-
-                return this.numberActivePage - 1;
+                return this.numberActivePage - Math.floor(this.maxVisibleButtons / 2);
             },
             isInFirstPage() {
                 return this.numberActivePage === 1;
@@ -162,7 +154,7 @@
             inEndActivePage(){
                 return this.numberActivePage = this.countAllPage;
             },
-            inBeginActivePage(){
+            inBeginActivePAge(){
                 return this.numberActivePage = 1;
             },
             incrementActivePage(){
