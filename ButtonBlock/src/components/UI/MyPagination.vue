@@ -32,6 +32,13 @@
                 </svg>
             </button>
         </li>
+        <li class="first-item-pagination">
+            <button v-if="startPage != 1" @click="inBeginActivePAge" type="button" 
+                        class="rounded-full w-12 h-12 hover:bg-blue-50 hover:text-white-100" 
+            >
+                1
+            </button>
+        </li>
         <li v-show="startPage >= 2" class="pagination_item">
                 <button type="button" >
                     ...
