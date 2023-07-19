@@ -12,9 +12,13 @@
   <div class="flex flex-col gap-20"> 
     <MySwitch v-model:modelValue="ToggleValue" v-model:DisableValue="DisableValue"></MySwitch>
     {{ ToggleValue }}
-    <MyCheckbox v-model:typeCheckbox="TypeBox" v-model:DisableCheckbox="DisableCheckbox"></MyCheckbox>
+    <MyCheckbox v-model:indeterminate="indeterminate"
+                v-model:disabled="disabled" v-model:checked="checked"
+                v-model:readonly="readonly" v-model:label="label"
+                v-model:labelPosition="labelPosition">
+    </MyCheckbox>
     <MyRadio></MyRadio>
-    <MyPagination></MyPagination>
+    <MyPagination v-model:maxVisibleButtons="maxVisibleButtons" v-model:countAllPage="countAllPage"></MyPagination>
    
   </div>
 
@@ -27,9 +31,17 @@
     data() {
       return {
         ToggleValue: false,
-        TypeBox: 0,
         DisableValue: false,
-        DisableCheckbox: false,
+        
+        indeterminate: false,
+        disabled: false,
+        checked: false,
+        readonly: false,
+        label: '',
+        labelPosition: 'right',
+
+        countAllPage: 20,
+        maxVisibleButtons: 3,
       }
     }
   }

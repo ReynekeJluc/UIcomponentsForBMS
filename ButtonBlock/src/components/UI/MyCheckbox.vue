@@ -1,22 +1,39 @@
 <template>
+    
+    <div class="mx-auto h-5">
+        <label>
+            <span v-if="label && labelPosition === 'left'">{{ label }}</span>
+            <input :indeterminate="indeterminate" type="checkbox" 
+                   :readonly="readonly"
+                   :disabled="disabled" 
+                   :checked="checked"
+                   class="rounded cursor-pointer
+                        border-black-15 border-2
 
-    <div class="mx-auto h-5" v-if="typeCheckbox == 0">
-        <input type="checkbox" v-if="DisableCheckbox == false" class="custom-checkbox custom-checkbox-def" id="check" value="yes">
-        <input type="checkbox" v-else :disabled="true" class="custom-checkbox custom-checkbox-def" id="check" value="yes">
-        <label for="check" v-if="DisableCheckbox == false" @click="incremState"></label>
-        <label for="check" v-else></label>
-    </div>
-    <div class="mx-auto h-5" v-if="typeCheckbox == 1">
-        <input type="checkbox" v-if="DisableCheckbox == false" class="custom-checkbox custom-checkbox-minus" id="check" value="yes">
-        <input type="checkbox" v-else :disabled="true" class="custom-checkbox custom-checkbox-minus" id="check" value="yes">
-        <label for="check" v-if="DisableCheckbox == false" @click="incremState"></label>
-        <label for="check" v-else></label>
-    </div>
-    <div class="mx-auto h-5" v-if="typeCheckbox == 2">
-        <input type="checkbox" v-if="DisableCheckbox == false" class="custom-checkbox custom-checkbox-check" id="check" value="yes">
-        <input type="checkbox" v-else :disabled="true" class="custom-checkbox custom-checkbox-check" id="check" value="yes">
-        <label for="check" v-if="DisableCheckbox == false" @click="incremState"></label>
-        <label for="check" v-else></label>
+                        disabled:border-black-15
+                        disabled:cursor-default
+                        disabled:indeterminate:bg-black-15
+                        disabled:checked:bg-black-15
+
+                        hover:[&:not(:disabled)]:[&:not(:checked)]:[&:not(:indeterminate)]:border-blue-40 
+                        focus:[&:not(:disabled)]:ring-transparent 
+                        focus:[&:not(:disabled)]:[&:not(:checked)]:[&:not(:indeterminate)]:border-blue-120
+
+                        checked:[&:not(:disabled)]:bg-blue-50
+                        checked:focus:[&:not(:disabled)]:bg-blue-50
+                        checked:focus:hover:[&:not(:disabled)]:bg-blue-100
+                        checked:active:hover:[&:not(:disabled)]:bg-blue-100
+                        checked:focus:active:[&:not(:disabled)]:bg-blue-120
+                        
+                        indeterminate:[&:not(:disabled)]:bg-blue-50
+                        indeterminate:hover:[&:not(:disabled)]:bg-blue-100
+                        indeterminate:focus:[&:not(:disabled)]:bg-blue-50
+                        indeterminate:focus:hover:[&:not(:disabled)]:bg-blue-100
+                        indeterminate:active:hover:[&:not(:disabled)]:bg-blue-100
+                        indeterminate:focus:active:[&:not(:disabled)]:bg-blue-120"
+            >
+            <span v-if="label && labelPosition === 'right'">{{ label }}</span>
+        </label>
     </div>
 
 </template>
@@ -26,104 +43,43 @@
     export default {
         name: "MyCheckBox",
         props: {
-            typeCheckbox: {
-                type: Number,
-            },
-            DisableCheckbox: {
+            indeterminate: {
                 type: Boolean,
+                required: false
+            },
+            disabled: {
+                type: Boolean,
+                required: false
+            },
+            checked: {
+                type: Boolean,
+                required: false
+            },
+            readonly: {
+                type: Boolean,
+                required: false
+            },
+            label: {
+                type: String
+            },
+            labelPosition: {
+                default: 'right'
             }
         },
-        methods: {
-            incremState() {
-                if (this.typeCheckbox > 1) this.$emit('update:typeCheckbox', this.typeCheckbox - 2);
-                else this.$emit('update:typeCheckbox', this.typeCheckbox + 1);
-            }
-        }
     }
 
 </script>
 
-<style> 
+<style scoped>
 
-    /* Стили для всех */
-    .custom-checkbox {
-        position: absolute;
-        border: none;
-        opacity: 0;
-        z-index: -1;
+    /* input[type="checkbox"]:read-only:checked:not(:disabled) {
+        background-image: url('data:image/svg+xml,<svg viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>');
+    } */
+    input[type="checkbox"]:indeterminate {
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" viewBox="-2 -2 14 6" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 1C0 0.447715 0.447715 0 1 0H9C9.55229 0 10 0.447715 10 1C10 1.55228 9.55229 2 9 2H1C0.447715 2 0 1.55228 0 1Z" fill="white"/></svg>');
     }
-    .custom-checkbox + label {
-        display: inline-flex;
-        align-items: center;
-        user-select: none;
-    }
-    .custom-checkbox + label::before {
-        content: "";
-        cursor: pointer;
-        width: 1em;
-        height: 1em;
-        border-radius: 4px;
-        background-color: #ffffff;
-    }
-
-    /* Дефолт стили состояний */
-    .custom-checkbox-def + label::before {
-        content: "";
-        border: 2px solid #6C8BC9;
-    }
-    .custom-checkbox-check + label::before {
-        content: "";
-        background: #3C5099;
-        background-image: url("../../assets/icons/checkboxSVG.svg");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 50% 50%;
-    }
-    .custom-checkbox-minus + label::before {
-        content: "";
-        background: #3C5099;
-        background-image: url("../../assets/icons/CheckboxMinus.svg");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 50% 50%;
-    }
-
-    /* Дефолтное состояние */
-    .custom-checkbox-def:checked + label::before {
-        border-color: #3C5099;
-    }
-    .custom-checkbox-def:hover + label::before {
-        border-color: #3256B0;
-        background-color: #fbfcfd;
-    }
-    .custom-checkbox-def:disabled + label::before {
-        cursor: default;
-        border-color: #C3C6CE;
-        background-color: #F5F7FA;
-    }
-
-    /* Состояния для плюса */
-    .custom-checkbox-check:checked + label::before {
-        background-color: #3C5099;
-    }
-    .custom-checkbox-check:hover + label::before {
-        background-color: #3256B0;
-    }
-    .custom-checkbox-check:disabled + label::before {
-        cursor: default;
-        background-color: #C3C6CE;
-    }
-    
-    /* Состояния для минуса */
-    .custom-checkbox-minus:checked + label::before {
-        background-color: #3C5099;
-    }
-    .custom-checkbox-minus:hover + label::before {
-        background-color: #3256B0;
-    }
-    .custom-checkbox-minus:disabled + label::before {
-        cursor:default;
-        background-color: #C3C6CE;
+    input[type="checkbox"]:checked {
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" viewBox="-2 0 14 7" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.72954 0.316062C10.1073 0.718974 10.0869 1.35181 9.68394 1.72954L3.66667 7.37074L0.316062 4.22954C-0.0868501 3.85181 -0.107264 3.21897 0.270466 2.81606C0.648196 2.41315 1.28103 2.39274 1.68394 2.77047L3.66667 4.62927L8.31606 0.270466C8.71897 -0.107264 9.35181 -0.0868501 9.72954 0.316062Z" fill="white"/></svg>');
     }
 
 </style>
