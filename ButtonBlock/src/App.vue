@@ -34,9 +34,9 @@
         DisableValue: false,
         
         indeterminate: false,
-        disabled: false,  
+        disabled: false,
         checked: false,
-        readonly: false,
+        readonly: true,
         label: '',
         labelPosition: 'right',
 
